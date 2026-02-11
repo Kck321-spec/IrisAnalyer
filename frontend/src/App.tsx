@@ -210,8 +210,8 @@ function App() {
           </div>
         </div>
 
-        {/* Iris Upload Section - Face Layout */}
-        <div className="flex items-end justify-center gap-4 mb-8">
+        {/* Iris Upload Section */}
+        <div className="flex justify-center gap-8 mb-8">
           {/* Right Iris Upload - shown on left (anatomically correct view) */}
           <div className="bg-gray-800 rounded-lg p-6 w-72">
             <h2 className="text-xl font-semibold mb-4 text-center">Right Iris (OD)</h2>
@@ -220,107 +220,6 @@ function App() {
               preview={rightPreview}
               label="Right Eye"
             />
-          </div>
-
-          {/* Nose - centered between eyes - cartoon style */}
-          <div className="flex flex-col items-center px-4">
-            <svg
-              width="100"
-              height="140"
-              viewBox="0 0 100 140"
-            >
-              {/* Main nose shape - bridge and rounded bulb */}
-              <path
-                d="M42 0
-                   C40 0, 38 6, 36 15
-                   C33 30, 30 50, 28 70
-                   C26 85, 22 95, 18 105
-                   C14 115, 14 125, 22 132
-                   C30 139, 40 142, 50 142
-                   C60 142, 70 139, 78 132
-                   C86 125, 86 115, 82 105
-                   C78 95, 74 85, 72 70
-                   C70 50, 67 30, 64 15
-                   C62 6, 60 0, 58 0 Z"
-                fill={skinColor.base}
-                stroke="#1a1a1a"
-                strokeWidth="2.5"
-              />
-
-              {/* Left side contour line */}
-              <path
-                d="M36 15 C33 35, 30 55, 28 75 C26 90, 22 100, 20 108"
-                fill="none"
-                stroke="#1a1a1a"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-
-              {/* Right side contour line */}
-              <path
-                d="M64 15 C67 35, 70 55, 72 75 C74 90, 78 100, 80 108"
-                fill="none"
-                stroke="#1a1a1a"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-
-              {/* Left nostril wing */}
-              <path
-                d="M20 108 C12 112, 8 120, 12 128 C16 134, 28 136, 38 132"
-                fill={skinColor.base}
-                stroke="#1a1a1a"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-
-              {/* Right nostril wing */}
-              <path
-                d="M80 108 C88 112, 92 120, 88 128 C84 134, 72 136, 62 132"
-                fill={skinColor.base}
-                stroke="#1a1a1a"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-
-              {/* Left nostril opening */}
-              <ellipse
-                cx="30"
-                cy="125"
-                rx="8"
-                ry="5"
-                fill={skinColor.deepShadow}
-                stroke="#1a1a1a"
-                strokeWidth="1.5"
-              />
-
-              {/* Right nostril opening */}
-              <ellipse
-                cx="70"
-                cy="125"
-                rx="8"
-                ry="5"
-                fill={skinColor.deepShadow}
-                stroke="#1a1a1a"
-                strokeWidth="1.5"
-              />
-
-              {/* Center nose crease/septum line */}
-              <path
-                d="M50 118 L50 132"
-                stroke="#1a1a1a"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-
-              {/* Subtle highlight on bridge */}
-              <path
-                d="M48 8 C48 8, 47 35, 47 60 C47 80, 48 95, 50 108
-                   C52 95, 53 80, 53 60 C53 35, 52 8, 52 8 Z"
-                fill={skinColor.highlight}
-                opacity="0.4"
-              />
-            </svg>
           </div>
 
           {/* Left Iris Upload - shown on right (anatomically correct view) */}
