@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import PatientForm from './components/PatientForm'
 import ImageUploader from './components/ImageUploader'
 import IrisViewer from './components/IrisViewer'
@@ -28,96 +28,6 @@ interface DoctorAnalysis {
   confidence_notes: string
 }
 
-interface SkinColor {
-  base: string
-  highlight: string
-  shadow: string
-  deepShadow: string
-}
-
-// Default skin tone (neutral)
-const defaultSkinColor: SkinColor = {
-  base: '#c9a07a',
-  highlight: '#ddb896',
-  shadow: '#8b6b4a',
-  deepShadow: '#5c4530',
-}
-
-// Extract skin color from the edges/corners of an eye image
-const extractSkinColorFromImage = (imageUrl: string): Promise<SkinColor> => {
-  return new Promise((resolve) => {
-    const img = new Image()
-    img.crossOrigin = 'anonymous'
-    img.onload = () => {
-      const canvas = document.createElement('canvas')
-      const ctx = canvas.getContext('2d')
-      if (!ctx) {
-        resolve(defaultSkinColor)
-        return
-      }
-
-      canvas.width = img.width
-      canvas.height = img.height
-      ctx.drawImage(img, 0, 0)
-
-      // Sample pixels from corners and edges where skin is likely visible
-      const samplePoints = [
-        // Top corners
-        { x: Math.floor(img.width * 0.05), y: Math.floor(img.height * 0.05) },
-        { x: Math.floor(img.width * 0.95), y: Math.floor(img.height * 0.05) },
-        // Bottom corners
-        { x: Math.floor(img.width * 0.05), y: Math.floor(img.height * 0.95) },
-        { x: Math.floor(img.width * 0.95), y: Math.floor(img.height * 0.95) },
-        // Mid edges
-        { x: Math.floor(img.width * 0.1), y: Math.floor(img.height * 0.5) },
-        { x: Math.floor(img.width * 0.9), y: Math.floor(img.height * 0.5) },
-        // Upper mid edges
-        { x: Math.floor(img.width * 0.15), y: Math.floor(img.height * 0.15) },
-        { x: Math.floor(img.width * 0.85), y: Math.floor(img.height * 0.15) },
-      ]
-
-      const colors: { r: number; g: number; b: number }[] = []
-
-      samplePoints.forEach((point) => {
-        const pixelData = ctx.getImageData(point.x, point.y, 1, 1).data
-        // Filter out very dark (likely eyelashes/pupil) or very bright (likely sclera/reflection) pixels
-        const brightness = (pixelData[0] + pixelData[1] + pixelData[2]) / 3
-        if (brightness > 60 && brightness < 220) {
-          colors.push({ r: pixelData[0], g: pixelData[1], b: pixelData[2] })
-        }
-      })
-
-      if (colors.length === 0) {
-        resolve(defaultSkinColor)
-        return
-      }
-
-      // Average the sampled colors
-      const avgColor = colors.reduce(
-        (acc, c) => ({ r: acc.r + c.r / colors.length, g: acc.g + c.g / colors.length, b: acc.b + c.b / colors.length }),
-        { r: 0, g: 0, b: 0 }
-      )
-
-      // Create color variations for the nose
-      const toHex = (r: number, g: number, b: number) =>
-        `#${Math.round(r).toString(16).padStart(2, '0')}${Math.round(g).toString(16).padStart(2, '0')}${Math.round(b).toString(16).padStart(2, '0')}`
-
-      resolve({
-        base: toHex(avgColor.r, avgColor.g, avgColor.b),
-        highlight: toHex(
-          Math.min(255, avgColor.r * 1.15),
-          Math.min(255, avgColor.g * 1.12),
-          Math.min(255, avgColor.b * 1.1)
-        ),
-        shadow: toHex(avgColor.r * 0.7, avgColor.g * 0.65, avgColor.b * 0.6),
-        deepShadow: toHex(avgColor.r * 0.45, avgColor.g * 0.4, avgColor.b * 0.35),
-      })
-    }
-    img.onerror = () => resolve(defaultSkinColor)
-    img.src = imageUrl
-  })
-}
-
 function App() {
   const [patientName, setPatientName] = useState('')
   const [notes, setNotes] = useState('')
@@ -128,25 +38,17 @@ function App() {
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [skinColor, setSkinColor] = useState<SkinColor>(defaultSkinColor)
-
-  const updateSkinColor = useCallback(async (imageUrl: string) => {
-    const detectedColor = await extractSkinColorFromImage(imageUrl)
-    setSkinColor(detectedColor)
-  }, [])
 
   const handleLeftIrisUpload = (file: File) => {
     setLeftIris(file)
     const previewUrl = URL.createObjectURL(file)
     setLeftPreview(previewUrl)
-    updateSkinColor(previewUrl)
   }
 
   const handleRightIrisUpload = (file: File) => {
     setRightIris(file)
     const previewUrl = URL.createObjectURL(file)
     setRightPreview(previewUrl)
-    updateSkinColor(previewUrl)
   }
 
   const handleAnalyze = async () => {
@@ -181,7 +83,6 @@ function App() {
     setRightPreview(null)
     setAnalysisResult(null)
     setError(null)
-    setSkinColor(defaultSkinColor)
   }
 
   return (
