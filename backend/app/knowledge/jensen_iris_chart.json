@@ -1,0 +1,772 @@
+{
+  "description": "Bernard Jensen's 96-Zone Iris Chart - Comprehensive Reference",
+  "source": "Based on 'Iridology: The Science and Practice in the Healing Arts' by Bernard Jensen, D.C., N.D., Ph.D.",
+  "zones": {
+    "right_iris": {
+      "12:00": {
+        "zone_numbers": [1, 2, 3, 4, 5, 6, 7, 8],
+        "main": "Brain/Cerebrum",
+        "sub_zones": ["Cerebrum", "Mental faculties", "Sensory areas", "Motor areas", "Pineal gland", "Ego center"],
+        "associated_conditions": ["Mental strain", "Headaches", "Memory issues", "Cognitive difficulties", "Brain fog"],
+        "signs_to_watch": {
+          "white_signs": "Mental overactivity, acute mental stress, inflammation",
+          "dark_signs": "Mental fatigue, chronic depression, poor memory",
+          "lacunae": "Inherited weakness in mental capacity",
+          "radii": "Toxic influence from bowel affecting brain"
+        },
+        "recommendations": {
+          "nutrition": "Brain-supportive foods: walnuts, fatty fish, blueberries",
+          "herbs": "Ginkgo biloba, gotu kola, rosemary",
+          "lifestyle": "Mental rest, meditation, adequate sleep"
+        }
+      },
+      "12:30": {
+        "zone_numbers": [9, 10, 11, 12],
+        "main": "Animation/Life Center",
+        "sub_zones": ["Medulla oblongata", "Locomotion center", "Vitality expression", "Life force"],
+        "associated_conditions": ["Low energy", "Fatigue", "Coordination issues", "Vital force depletion"],
+        "signs_to_watch": {
+          "white_signs": "Hyperactivity, nervous energy",
+          "dark_signs": "Low vitality, chronic fatigue",
+          "lacunae": "Inherited low vitality",
+          "nerve_rings": "Nervous exhaustion affecting vitality"
+        }
+      },
+      "1:00": {
+        "zone_numbers": [13, 14, 15, 16],
+        "main": "Speech Center/Ear",
+        "sub_zones": ["Speech center", "Temple", "Mastoid", "Upper face", "Forehead"],
+        "associated_conditions": ["Speech difficulties", "Ear problems", "Temple headaches", "Facial issues"],
+        "signs_to_watch": {
+          "white_signs": "Acute ear infection, active inflammation",
+          "dark_signs": "Chronic hearing issues, old ear problems",
+          "lacunae": "Inherited weakness in ear/hearing"
+        }
+      },
+      "1:30": {
+        "zone_numbers": [17, 18, 19, 20],
+        "main": "Upper Lung/Bronchi",
+        "sub_zones": ["Upper right lung", "Upper bronchi", "Ribs (upper)", "Shoulder area"],
+        "associated_conditions": ["Upper respiratory issues", "Shoulder tension", "Rib pain", "Bronchial congestion"],
+        "signs_to_watch": {
+          "white_signs": "Acute bronchitis, active respiratory infection",
+          "dark_signs": "Chronic bronchial weakness, old lung issues",
+          "lymphatic_rosary": "Lymphatic congestion in respiratory area"
+        }
+      },
+      "2:00": {
+        "zone_numbers": [21, 22, 23, 24],
+        "main": "Bronchi/Mammary",
+        "sub_zones": ["Mid bronchi", "Mammary gland (right)", "Pleura", "Breast tissue", "Upper arm"],
+        "associated_conditions": ["Bronchitis", "Breast conditions", "Pleural issues", "Arm problems"],
+        "signs_to_watch": {
+          "white_signs": "Acute breast inflammation, active bronchitis",
+          "dark_signs": "Chronic breast issues, old bronchial problems",
+          "tophi": "Calcium deposits, lymphatic congestion"
+        },
+        "recommendations": {
+          "nutrition": "Vitamin E, essential fatty acids, iodine-rich foods",
+          "herbs": "Mullein, elecampane, red clover",
+          "lifestyle": "Proper bra support, lymphatic massage, deep breathing"
+        }
+      },
+      "2:30": {
+        "zone_numbers": [25, 26, 27, 28],
+        "main": "Lung Upper/Rib Area",
+        "sub_zones": ["Right lung (upper)", "Ribs", "Thoracic back"],
+        "associated_conditions": ["Lung congestion", "Rib pain", "Upper back issues"]
+      },
+      "3:00": {
+        "zone_numbers": [29, 30, 31, 32],
+        "main": "Lung Middle",
+        "sub_zones": ["Right lung (middle lobe)", "Pleura", "Thorax"],
+        "associated_conditions": ["Lung weakness", "Pleurisy", "Thoracic issues"],
+        "signs_to_watch": {
+          "white_signs": "Acute pleurisy, active lung inflammation",
+          "dark_signs": "Chronic lung weakness, scar tissue",
+          "lacunae": "Inherited lung weakness"
+        }
+      },
+      "3:30": {
+        "zone_numbers": [33, 34, 35, 36],
+        "main": "Liver Upper Lobe",
+        "sub_zones": ["Liver (upper portion)", "Diaphragm", "Hepatic area"],
+        "associated_conditions": ["Liver congestion", "Diaphragm tension", "Right upper quadrant issues"]
+      },
+      "4:00": {
+        "zone_numbers": [37, 38, 39, 40],
+        "main": "Liver/Ribs",
+        "sub_zones": ["Liver (main body)", "Ribs", "Pleura", "Back (mid-thoracic)"],
+        "associated_conditions": ["Liver congestion", "Rib pain", "Back pain", "Pleurisy"],
+        "signs_to_watch": {
+          "brown_pigmentation": "Liver stress, bile issues",
+          "dark_signs": "Chronic liver congestion",
+          "radii_solaris": "Toxic bowel affecting liver"
+        }
+      },
+      "4:30": {
+        "zone_numbers": [41, 42, 43, 44],
+        "main": "Gallbladder",
+        "sub_zones": ["Gallbladder", "Bile ducts", "Liver/gallbladder junction"],
+        "associated_conditions": ["Gallstones", "Bile flow issues", "Digestive difficulties with fats"],
+        "signs_to_watch": {
+          "white_signs": "Acute gallbladder inflammation",
+          "dark_signs": "Chronic gallbladder weakness",
+          "yellow_pigmentation": "Bile congestion"
+        },
+        "recommendations": {
+          "nutrition": "Bitter greens, lemon water, beets, artichokes",
+          "herbs": "Milk thistle, dandelion root, turmeric",
+          "lifestyle": "Avoid fried foods, regular eating schedule"
+        }
+      },
+      "5:00": {
+        "zone_numbers": [45, 46, 47, 48],
+        "main": "Liver Lower/Hepatic Flexure",
+        "sub_zones": ["Liver (lower portion)", "Hepatic flexure of colon", "Right upper abdomen"],
+        "associated_conditions": ["Liver issues", "Colon problems", "Digestive complaints"]
+      },
+      "5:30": {
+        "zone_numbers": [49, 50, 51, 52],
+        "main": "Ascending Colon Upper",
+        "sub_zones": ["Ascending colon (upper)", "Abdominal wall"],
+        "associated_conditions": ["Colon transit issues", "Abdominal discomfort", "Gas"]
+      },
+      "6:00": {
+        "zone_numbers": [53, 54, 55, 56],
+        "main": "Kidney/Adrenal",
+        "sub_zones": ["Right kidney", "Right adrenal gland", "Ureter", "Pararenal area"],
+        "associated_conditions": ["Kidney weakness", "Adrenal fatigue", "Lower back pain", "Urinary issues"],
+        "signs_to_watch": {
+          "white_signs": "Acute kidney/adrenal stress",
+          "dark_signs": "Chronic kidney weakness, adrenal exhaustion",
+          "lacunae": "Inherited kidney weakness (very significant)",
+          "crypts": "Severe genetic kidney weakness",
+          "nerve_rings_through_zone": "Stress affecting adrenals"
+        },
+        "recommendations": {
+          "nutrition": "Watermelon, grapes, parsley, celery, adequate hydration",
+          "herbs": "Kidney/bladder formula, hydrangea, corn silk, uva ursi",
+          "lifestyle": "Stress reduction, adequate rest, avoid excess protein"
+        },
+        "special_notes": "This is one of the most critical zones - kidney/adrenal health affects entire body"
+      },
+      "6:30": {
+        "zone_numbers": [57, 58, 59, 60],
+        "main": "Ascending Colon Lower",
+        "sub_zones": ["Ascending colon (lower)", "Ileocecal region"],
+        "associated_conditions": ["Colon issues", "Ileocecal valve dysfunction", "Constipation"]
+      },
+      "7:00": {
+        "zone_numbers": [61, 62, 63, 64],
+        "main": "Appendix/Cecum",
+        "sub_zones": ["Appendix", "Cecum", "Right lower abdomen", "Ileocecal valve"],
+        "associated_conditions": ["Appendicitis history", "Cecal issues", "Right lower abdominal pain", "Valve dysfunction"],
+        "signs_to_watch": {
+          "white_signs": "Acute appendix/cecal inflammation",
+          "dark_signs": "Chronic weakness, old appendix issues",
+          "lacunae": "Inherited weakness in this area"
+        },
+        "recommendations": {
+          "nutrition": "Fiber-rich foods, probiotics, fermented foods",
+          "herbs": "Slippery elm, marshmallow root",
+          "lifestyle": "Regular bowel movements, proper food combining"
+        }
+      },
+      "7:30": {
+        "zone_numbers": [65, 66, 67, 68],
+        "main": "Ovary/Testes (Right)",
+        "sub_zones": ["Right ovary (female)", "Right testes (male)", "Fallopian tube/Vas deferens", "Groin"],
+        "associated_conditions": ["Reproductive issues", "Hormonal imbalances", "Groin pain", "Fertility concerns"],
+        "signs_to_watch": {
+          "white_signs": "Acute reproductive inflammation",
+          "dark_signs": "Chronic reproductive weakness",
+          "lacunae": "Inherited reproductive weakness"
+        }
+      },
+      "8:00": {
+        "zone_numbers": [69, 70, 71, 72],
+        "main": "Groin/Pelvis",
+        "sub_zones": ["Groin", "Pelvis", "Uterus/Prostate area", "Upper thigh"],
+        "associated_conditions": ["Pelvic issues", "Prostate problems", "Uterine conditions", "Thigh weakness"],
+        "signs_to_watch": {
+          "lacunae": "Inherited pelvic weakness",
+          "dark_signs": "Chronic pelvic congestion"
+        }
+      },
+      "8:30": {
+        "zone_numbers": [73, 74, 75, 76],
+        "main": "Thigh/Leg",
+        "sub_zones": ["Thigh", "Sciatic nerve area", "Upper leg"],
+        "associated_conditions": ["Sciatica", "Leg weakness", "Thigh pain"]
+      },
+      "9:00": {
+        "zone_numbers": [77, 78, 79, 80],
+        "main": "Pelvis/Hip",
+        "sub_zones": ["Pelvis", "Hip joint", "Sacrum", "Lower back"],
+        "associated_conditions": ["Hip problems", "Lower back pain", "Sacral issues", "Pelvic instability"],
+        "signs_to_watch": {
+          "dark_signs": "Chronic lower back issues",
+          "lacunae": "Inherited skeletal weakness"
+        }
+      },
+      "9:30": {
+        "zone_numbers": [81, 82, 83, 84],
+        "main": "Back/Spine (Lumbar)",
+        "sub_zones": ["Lumbar spine", "Spinal nerves", "Lower back muscles"],
+        "associated_conditions": ["Lumbar pain", "Spinal issues", "Nerve problems"]
+      },
+      "10:00": {
+        "zone_numbers": [85, 86, 87, 88],
+        "main": "Heart (Partial)/Aorta",
+        "sub_zones": ["Heart (right side)", "Aorta", "Cardiac vessels"],
+        "associated_conditions": ["Heart conditions", "Circulation issues", "Chest tightness"],
+        "signs_to_watch": {
+          "white_signs": "Acute cardiac stress",
+          "dark_signs": "Chronic heart weakness",
+          "sodium_ring": "Sodium/mineral imbalance affecting heart",
+          "arcus_senilis": "Lipid/cholesterol issues"
+        },
+        "recommendations": {
+          "nutrition": "Heart-healthy foods: leafy greens, berries, garlic, olive oil",
+          "herbs": "Hawthorn, cayenne, garlic, motherwort",
+          "lifestyle": "Regular exercise, stress management, adequate rest"
+        }
+      },
+      "10:30": {
+        "zone_numbers": [89, 90, 91, 92],
+        "main": "Thorax/Chest Wall",
+        "sub_zones": ["Thorax", "Chest wall", "Upper back"],
+        "associated_conditions": ["Chest tightness", "Upper back pain", "Thoracic issues"]
+      },
+      "11:00": {
+        "zone_numbers": [93, 94, 95, 96],
+        "main": "Throat/Tonsil/Larynx",
+        "sub_zones": ["Throat", "Tonsils", "Larynx", "Neck", "Cervical spine"],
+        "associated_conditions": ["Throat issues", "Tonsil problems", "Voice difficulties", "Neck pain"],
+        "signs_to_watch": {
+          "white_signs": "Acute throat infection, tonsillitis",
+          "dark_signs": "Chronic throat weakness, old tonsil issues",
+          "lacunae": "Inherited throat/tonsil weakness"
+        }
+      },
+      "11:30": {
+        "zone_numbers": [1, 2, 3, 4],
+        "main": "Thyroid/Parathyroid",
+        "sub_zones": ["Thyroid gland", "Parathyroid", "Esophagus"],
+        "associated_conditions": ["Thyroid conditions", "Metabolic issues", "Calcium regulation problems"],
+        "signs_to_watch": {
+          "white_signs": "Hyperactive thyroid signs",
+          "dark_signs": "Underactive thyroid, chronic weakness",
+          "lacunae": "Inherited thyroid weakness"
+        },
+        "recommendations": {
+          "nutrition": "Iodine-rich foods, selenium, zinc, avoid goitrogens if hypothyroid",
+          "herbs": "Kelp, bladderwrack, ashwagandha",
+          "lifestyle": "Stress management, adequate sleep, avoid toxins"
+        }
+      }
+    },
+    "left_iris": {
+      "12:00": {
+        "zone_numbers": [1, 2, 3, 4, 5, 6, 7, 8],
+        "main": "Brain/Cerebrum",
+        "sub_zones": ["Cerebrum", "Mental faculties", "Sensory areas", "Motor areas", "Pineal gland"],
+        "associated_conditions": ["Mental strain", "Headaches", "Memory issues", "Cognitive difficulties"],
+        "signs_to_watch": {
+          "white_signs": "Mental overactivity, acute mental stress",
+          "dark_signs": "Mental fatigue, chronic depression, poor memory",
+          "lacunae": "Inherited mental/cognitive weakness"
+        },
+        "special_notes": "Left iris brain area often reflects emotional/mental aspects more than right"
+      },
+      "12:30": {
+        "zone_numbers": [9, 10, 11, 12],
+        "main": "Thyroid/Parathyroid",
+        "sub_zones": ["Thyroid gland", "Parathyroid", "Esophagus"],
+        "associated_conditions": ["Thyroid conditions", "Metabolic issues", "Calcium problems"]
+      },
+      "1:00": {
+        "zone_numbers": [13, 14, 15, 16],
+        "main": "Throat/Tonsil/Larynx",
+        "sub_zones": ["Throat", "Tonsils", "Larynx", "Neck", "Cervical spine"],
+        "associated_conditions": ["Throat issues", "Tonsil problems", "Voice difficulties", "Neck stiffness"]
+      },
+      "1:30": {
+        "zone_numbers": [17, 18, 19, 20],
+        "main": "Thorax/Chest Wall",
+        "sub_zones": ["Thorax", "Chest wall", "Upper back"],
+        "associated_conditions": ["Chest tightness", "Upper back pain", "Thoracic issues"]
+      },
+      "2:00": {
+        "zone_numbers": [21, 22, 23, 24],
+        "main": "Heart (Major)/Aorta",
+        "sub_zones": ["Heart (main portion)", "Aorta", "Cardiac vessels", "Pericardium"],
+        "associated_conditions": ["Heart conditions", "Circulation issues", "Chest pain", "Cardiac weakness"],
+        "signs_to_watch": {
+          "white_signs": "Acute cardiac stress, palpitations",
+          "dark_signs": "Chronic heart weakness, old cardiac issues",
+          "lacunae": "Inherited heart weakness",
+          "sodium_ring": "Sodium/mineral imbalance",
+          "arcus_senilis": "Lipid issues, poor cerebral circulation"
+        },
+        "recommendations": {
+          "nutrition": "Hawthorn berries, CoQ10-rich foods, omega-3s",
+          "herbs": "Hawthorn, cayenne, motherwort, linden",
+          "lifestyle": "Cardiac-appropriate exercise, stress reduction"
+        },
+        "special_notes": "This is the PRIMARY heart zone - left iris shows main cardiac area"
+      },
+      "2:30": {
+        "zone_numbers": [25, 26, 27, 28],
+        "main": "Back/Spine (Lumbar)",
+        "sub_zones": ["Lumbar spine", "Spinal nerves", "Lower back"],
+        "associated_conditions": ["Lower back pain", "Spinal issues", "Nerve problems"]
+      },
+      "3:00": {
+        "zone_numbers": [29, 30, 31, 32],
+        "main": "Pelvis/Hip",
+        "sub_zones": ["Pelvis", "Hip joint", "Sacrum", "Lower back"],
+        "associated_conditions": ["Hip problems", "Pelvic issues", "Sacral pain", "Lower back weakness"]
+      },
+      "3:30": {
+        "zone_numbers": [33, 34, 35, 36],
+        "main": "Thigh/Leg",
+        "sub_zones": ["Thigh", "Sciatic nerve", "Upper leg"],
+        "associated_conditions": ["Sciatica", "Leg weakness", "Thigh pain"]
+      },
+      "4:00": {
+        "zone_numbers": [37, 38, 39, 40],
+        "main": "Groin/Pelvis",
+        "sub_zones": ["Groin", "Pelvis", "Uterus/Prostate area"],
+        "associated_conditions": ["Pelvic issues", "Prostate problems", "Uterine conditions"]
+      },
+      "4:30": {
+        "zone_numbers": [41, 42, 43, 44],
+        "main": "Ovary/Testes (Left)",
+        "sub_zones": ["Left ovary (female)", "Left testes (male)", "Fallopian tube/Vas deferens"],
+        "associated_conditions": ["Reproductive issues", "Hormonal imbalances", "Fertility concerns"],
+        "signs_to_watch": {
+          "lacunae": "Inherited reproductive weakness",
+          "dark_signs": "Chronic reproductive congestion"
+        }
+      },
+      "5:00": {
+        "zone_numbers": [45, 46, 47, 48],
+        "main": "Sigmoid/Descending Colon",
+        "sub_zones": ["Sigmoid colon", "Descending colon", "Left lower abdomen"],
+        "associated_conditions": ["Constipation", "Colon issues", "Lower abdominal pain", "Diverticular disease"],
+        "signs_to_watch": {
+          "ballooning": "Prolapsed or distended colon",
+          "dark_pockets": "Impacted waste, diverticula",
+          "radii_solaris": "Toxic bowel affecting other organs"
+        },
+        "recommendations": {
+          "nutrition": "Fiber, water, probiotic foods",
+          "herbs": "Cascara sagrada, senna (short-term), psyllium",
+          "lifestyle": "Regular bowel habits, exercise, proper positioning"
+        }
+      },
+      "5:30": {
+        "zone_numbers": [49, 50, 51, 52],
+        "main": "Descending Colon",
+        "sub_zones": ["Descending colon", "Splenic flexure"],
+        "associated_conditions": ["Colon transit issues", "Splenic flexure syndrome", "Constipation"]
+      },
+      "6:00": {
+        "zone_numbers": [53, 54, 55, 56],
+        "main": "Kidney/Adrenal",
+        "sub_zones": ["Left kidney", "Left adrenal gland", "Ureter", "Pararenal area"],
+        "associated_conditions": ["Kidney weakness", "Adrenal fatigue", "Lower back pain", "Urinary issues"],
+        "signs_to_watch": {
+          "white_signs": "Acute kidney stress",
+          "dark_signs": "Chronic kidney weakness, adrenal exhaustion",
+          "lacunae": "Inherited kidney weakness",
+          "crypts": "Severe genetic kidney weakness"
+        },
+        "special_notes": "Critical zone - kidney/adrenal function affects entire system"
+      },
+      "6:30": {
+        "zone_numbers": [57, 58, 59, 60],
+        "main": "Pancreas",
+        "sub_zones": ["Pancreas", "Transverse colon (left portion)"],
+        "associated_conditions": ["Blood sugar issues", "Pancreatic weakness", "Digestive enzyme deficiency"],
+        "signs_to_watch": {
+          "brown_pigmentation": "Blood sugar stress",
+          "dark_signs": "Chronic pancreatic weakness",
+          "lacunae": "Inherited pancreatic weakness"
+        },
+        "recommendations": {
+          "nutrition": "Low glycemic foods, chromium, bitter herbs",
+          "herbs": "Gymnema, bitter melon, cinnamon",
+          "lifestyle": "Regular meals, blood sugar management"
+        }
+      },
+      "7:00": {
+        "zone_numbers": [61, 62, 63, 64],
+        "main": "Spleen",
+        "sub_zones": ["Spleen", "Splenic area"],
+        "associated_conditions": ["Immune issues", "Blood conditions", "Splenic weakness"],
+        "signs_to_watch": {
+          "dark_signs": "Chronic splenic weakness",
+          "lacunae": "Inherited immune/blood weakness"
+        },
+        "recommendations": {
+          "nutrition": "Iron-rich foods, vitamin C, chlorophyll-rich greens",
+          "herbs": "Astragalus, echinacea, red root",
+          "lifestyle": "Immune support, adequate rest"
+        }
+      },
+      "7:30": {
+        "zone_numbers": [65, 66, 67, 68],
+        "main": "Stomach Body",
+        "sub_zones": ["Stomach (body)", "Fundus", "Gastric area"],
+        "associated_conditions": ["Stomach issues", "Digestion problems", "Gastric discomfort"],
+        "signs_to_watch": {
+          "white_signs": "Hyperacidity, acute gastritis",
+          "dark_signs": "Low stomach acid, chronic digestive weakness",
+          "stomach_ring_appearance": "Overall digestive capacity"
+        }
+      },
+      "8:00": {
+        "zone_numbers": [69, 70, 71, 72],
+        "main": "Lung (Left)/Heart",
+        "sub_zones": ["Left lung (lower)", "Heart area", "Pleura", "Cardiac area"],
+        "associated_conditions": ["Left lung issues", "Heart conditions", "Chest congestion"],
+        "signs_to_watch": {
+          "white_signs": "Acute lung/cardiac inflammation",
+          "dark_signs": "Chronic lung weakness",
+          "lacunae": "Inherited weakness"
+        }
+      },
+      "8:30": {
+        "zone_numbers": [73, 74, 75, 76],
+        "main": "Lung Middle",
+        "sub_zones": ["Left lung (middle)", "Thorax"],
+        "associated_conditions": ["Lung conditions", "Respiratory issues", "Chest tightness"]
+      },
+      "9:00": {
+        "zone_numbers": [77, 78, 79, 80],
+        "main": "Bronchi/Mammary",
+        "sub_zones": ["Bronchi", "Left mammary gland", "Pleura", "Breast tissue"],
+        "associated_conditions": ["Bronchitis", "Breast conditions", "Respiratory issues"],
+        "signs_to_watch": {
+          "lymphatic_rosary": "Lymphatic congestion in breast area",
+          "tophi": "Calcium deposits"
+        }
+      },
+      "9:30": {
+        "zone_numbers": [81, 82, 83, 84],
+        "main": "Upper Lung/Bronchi",
+        "sub_zones": ["Left upper lung", "Upper bronchi", "Ribs", "Shoulder"],
+        "associated_conditions": ["Upper respiratory issues", "Shoulder problems", "Rib pain"]
+      },
+      "10:00": {
+        "zone_numbers": [85, 86, 87, 88],
+        "main": "Speech Center/Ear",
+        "sub_zones": ["Speech center", "Ear", "Temple", "Mastoid"],
+        "associated_conditions": ["Hearing issues", "Speech difficulties", "Ear problems", "Temple headaches"]
+      },
+      "10:30": {
+        "zone_numbers": [89, 90, 91, 92],
+        "main": "Animation/Life Center",
+        "sub_zones": ["Medulla oblongata", "Locomotion", "Vitality center"],
+        "associated_conditions": ["Low vitality", "Coordination issues", "Energy depletion"]
+      },
+      "11:00": {
+        "zone_numbers": [93, 94, 95, 96],
+        "main": "Cerebellum",
+        "sub_zones": ["Cerebellum", "Balance center", "Coordination center"],
+        "associated_conditions": ["Balance issues", "Coordination problems", "Dizziness"],
+        "signs_to_watch": {
+          "dark_signs": "Chronic balance/coordination issues",
+          "lacunae": "Inherited cerebellar weakness"
+        }
+      },
+      "11:30": {
+        "zone_numbers": [1, 2, 3, 4],
+        "main": "Brain (Motor Area)",
+        "sub_zones": ["Motor area", "Sensory pathways"],
+        "associated_conditions": ["Motor difficulties", "Sensory issues", "Coordination problems"]
+      }
+    }
+  },
+  "concentric_rings": {
+    "pupil_zone": {
+      "description": "Central opening - reflects autonomic nervous system activity",
+      "indicators": ["Pupil size", "Pupil shape", "Pupil reactivity", "Pupil position"],
+      "abnormalities": {
+        "dilated": "Sympathetic dominance, stress, fear, stimulants",
+        "constricted": "Parasympathetic dominance, certain medications",
+        "irregular_shape": "Trauma, spinal issues, nerve problems",
+        "flattened_edge": "Spinal lesion at corresponding position"
+      }
+    },
+    "stomach_ring": {
+      "description": "Innermost ring immediately around pupil - digestive foundation",
+      "position": "0-10% from pupil edge",
+      "width": "Approximately 1/6 of iris radius",
+      "indicators": ["Digestive capacity", "Stomach acid levels", "Enzyme production", "Gastric motility"],
+      "signs": {
+        "white_ring": "Hyperacidity, gastric irritation",
+        "dark_ring": "Low stomach acid (hypochlorhydria)",
+        "irregular": "Variable digestive function",
+        "orange_tint": "Gastric inflammation"
+      }
+    },
+    "intestinal_zone": {
+      "description": "Bowel area around stomach ring - intestinal health indicator",
+      "position": "10-30% from pupil edge",
+      "width": "Approximately 1/6 of iris radius",
+      "indicators": ["Intestinal health", "Transit time", "Absorption capacity", "Bowel pockets"],
+      "signs": {
+        "ballooning": "Distended or prolapsed colon sections",
+        "dark_pockets": "Impacted material, diverticula",
+        "radii_from_zone": "Toxic material affecting other organs",
+        "spastic_appearance": "IBS-type patterns"
+      }
+    },
+    "autonomic_nerve_wreath": {
+      "description": "Crucial boundary line between digestive and organ zones - the collarette",
+      "position": "Approximately 33% from pupil edge (1/3 distance)",
+      "importance": "Most significant single structure in the iris according to Jensen",
+      "indicators": ["Autonomic balance", "Digestive rhythm", "Nervous system tone"],
+      "variations": {
+        "normal": "Even, 1/3 from pupil - balanced autonomic function",
+        "contracted": "Pulled toward pupil - sympathetic dominance, tense digestion",
+        "expanded": "Pushed outward - parasympathetic dominance, sluggish digestion",
+        "irregular": "Wavy position - variable digestive function",
+        "jagged": "Sharp peaks/valleys - spastic conditions, nervous digestion",
+        "prolapsed": "Ballooning sections - bowel pockets, diverticula"
+      }
+    },
+    "ciliary_zone": {
+      "description": "Major organ zone - contains representations of all major organs and glands",
+      "position": "33-80% from pupil edge (between ANW and lymphatic zone)",
+      "width": "Approximately 1/3 of iris radius",
+      "indicators": ["Organ health", "Tissue conditions", "Genetic weaknesses", "Inflammation levels"],
+      "sign_types": {
+        "lacunae": "Open lesions indicating inherent organ weakness",
+        "crypts": "Deep dark holes - severe weakness",
+        "pigmentation": "Discoloration indicating stress or toxicity",
+        "radii_solaris": "Spokes from pupil - toxic influence from bowel",
+        "nerve_rings": "Concentric rings - nervous tension levels"
+      }
+    },
+    "lymphatic_zone": {
+      "description": "Outermost zone - lymphatic system and elimination capacity",
+      "position": "80-100% (iris edge)",
+      "width": "Outer 1/6 of iris radius",
+      "indicators": ["Lymphatic health", "Elimination capacity", "Immune function", "Skin health"],
+      "signs": {
+        "lymphatic_rosary": "White/cream beads at edge - lymphatic congestion",
+        "scurf_rim": "Dark ring at edge - skin suppression, blocked elimination",
+        "arcus_senilis": "White arc at top - cholesterol/lipid issues",
+        "sodium_ring": "White ring around iris - mineral imbalance, hardening tendency",
+        "tophi": "Calcium-like deposits - chronic lymphatic congestion"
+      }
+    }
+  },
+  "constitutional_types": {
+    "blue_lymphatic": {
+      "base_color": "Pure blue to light gray-blue",
+      "common_ancestry": "Northern European (Scandinavian, German, British, Irish)",
+      "fiber_appearance": "Usually clearly visible fibers",
+      "tendencies": ["Lymphatic congestion", "Respiratory sensitivity", "Skin conditions", "Mucus accumulation", "Catarrhal conditions"],
+      "strengths": ["Strong eliminative capacity when healthy", "Good recuperative ability", "Clear response to treatment"],
+      "signs_to_watch": ["Lymphatic rosary", "Tophi deposits", "Cloudy peripheral zone"],
+      "recommendations": {
+        "nutrition": "Reduce mucus-forming foods, increase greens and fruits",
+        "herbs": "Lymphatic herbs: cleavers, red clover, echinacea",
+        "lifestyle": "Regular movement, dry skin brushing, deep breathing"
+      }
+    },
+    "brown_hematogenic": {
+      "base_color": "Solid brown to dark brown",
+      "common_ancestry": "Mediterranean, African, Asian, Native American, Middle Eastern",
+      "fiber_appearance": "Often obscured by pigmentation - density harder to assess",
+      "tendencies": ["Blood composition issues", "Liver/gallbladder sensitivity", "Circulatory challenges", "Anemia tendency", "Blood sugar issues"],
+      "strengths": ["Strong digestive capacity", "Robust physical constitution", "Heat tolerance"],
+      "signs_to_watch": ["Pigmentation changes", "Central heterochromia", "Liver zone markings"],
+      "recommendations": {
+        "nutrition": "Blood-building foods, iron-rich greens, beets",
+        "herbs": "Liver herbs: milk thistle, dandelion, turmeric",
+        "lifestyle": "Regular meals, adequate iron, circulation support"
+      }
+    },
+    "mixed_biliary": {
+      "base_color": "Blue base with brown/yellow/orange overlay around pupil",
+      "common_ancestry": "Central European, mixed heritage",
+      "fiber_appearance": "Blue fibers visible in outer zones, covered centrally",
+      "tendencies": ["Digestive sensitivity", "Blood sugar imbalances", "Liver/bile involvement", "Pancreatic stress"],
+      "strengths": ["Adaptable constitution", "Moderate in all systems", "Balanced tendencies"],
+      "signs_to_watch": ["Central heterochromia", "Digestive ring changes", "Pancreas zone", "Liver zone"],
+      "recommendations": {
+        "nutrition": "Blood sugar balancing, enzyme-rich foods",
+        "herbs": "Digestive bitters, pancreatic support",
+        "lifestyle": "Regular eating schedule, proper food combining"
+      }
+    },
+    "hazel_variation": {
+      "base_color": "Brown center with blue/green outer ring",
+      "characteristics": "Mixed traits requiring careful bilateral analysis",
+      "analysis_approach": "Treat as combination: hematogenic tendencies centrally, lymphatic tendencies peripherally",
+      "signs_to_watch": ["Both lymphatic and blood-related signs", "Transition zone between colors"]
+    }
+  },
+  "fiber_density": {
+    "silk": {
+      "description": "Tightly woven, very fine fibers - almost impossible to see individual fibers",
+      "constitution": "Strongest - excellent inherent vitality",
+      "healing_capacity": "Excellent - resilient, quick recovery",
+      "percentage_population": "Rare - approximately 5% of population",
+      "clinical_significance": "Strong constitution, good prognosis, rapid response to treatment"
+    },
+    "linen": {
+      "description": "Slightly looser weave but still compact - fibers visible but tight",
+      "constitution": "Good - solid inherent vitality",
+      "healing_capacity": "Good - average resilience, steady recovery",
+      "percentage_population": "Common - approximately 30% of population",
+      "clinical_significance": "Good constitution, favorable prognosis"
+    },
+    "hessian": {
+      "description": "Noticeably loose fibers with visible gaps - burlap-like appearance",
+      "constitution": "Moderate - weaker inherent vitality",
+      "healing_capacity": "Fair - slower recovery, requires more support",
+      "percentage_population": "Common - approximately 45% of population",
+      "clinical_significance": "Requires more comprehensive support, slower healing expected"
+    },
+    "net": {
+      "description": "Very loose weave with many lacunae visible - net-like appearance",
+      "constitution": "Challenged - weak inherent vitality",
+      "healing_capacity": "Requires significant support - slowest recovery",
+      "percentage_population": "Less common - approximately 20% of population",
+      "clinical_significance": "Needs comprehensive, long-term approach - patience required"
+    }
+  },
+  "marking_types": {
+    "lacunae": {
+      "description": "Open lesions in iris fiber structure",
+      "types": {
+        "closed": "Contained oval shape - weakness contained",
+        "open": "Diamond or leaf shape - active or developing condition",
+        "honeycomb": "Multiple small connected lesions - multiple weaknesses",
+        "giant": "Very large lesion - significant inherited weakness"
+      },
+      "interpretation": "Indicates inherent weakness in corresponding organ/system",
+      "healing_signs": "Edges soften, healing lines appear within"
+    },
+    "crypts": {
+      "description": "Deep, dark holes in iris - more severe than lacunae",
+      "interpretation": "Severe inherited weakness, requires long-term support",
+      "prognosis": "Slower to respond, needs comprehensive approach"
+    },
+    "radii_solaris": {
+      "description": "Spoke-like lines radiating from pupil outward",
+      "interpretation": "Toxic bowel affecting organs along the ray path",
+      "associated_with": "Parasympathetic nervous system stress, bowel toxicity",
+      "treatment_focus": "Bowel cleansing, parasympathetic support"
+    },
+    "nerve_rings": {
+      "description": "Concentric circular furrows/grooves in iris",
+      "count_interpretation": {
+        "1-2": "Normal nervous sensitivity",
+        "3-4": "Moderate nervous tension",
+        "5-6": "Significant nervous stress",
+        "7+": "Severe nervous exhaustion"
+      },
+      "associated_with": "Chronic stress, anxiety, nervous exhaustion",
+      "treatment_focus": "Nervous system support, stress management"
+    },
+    "lymphatic_rosary": {
+      "description": "White or cream-colored beads at outer iris edge",
+      "interpretation": "Lymphatic system congestion",
+      "associated_with": "Poor elimination, immune challenges",
+      "treatment_focus": "Lymphatic drainage, movement, skin brushing"
+    },
+    "scurf_rim": {
+      "description": "Dark ring at outer edge of iris",
+      "interpretation": "Skin suppression, blocked elimination through skin",
+      "associated_with": "Use of suppressant medications, blocked elimination",
+      "treatment_focus": "Skin brushing, sweating, supporting skin function"
+    },
+    "arcus_senilis": {
+      "description": "White arc typically at top of iris (12 o'clock area)",
+      "interpretation": "Cholesterol/lipid imbalance, poor cerebral circulation",
+      "associated_with": "Cardiovascular concerns, aging",
+      "treatment_focus": "Cardiovascular support, lipid management"
+    },
+    "sodium_ring": {
+      "description": "White ring around entire iris periphery",
+      "interpretation": "Sodium/mineral imbalance, hardening tendency in tissues",
+      "associated_with": "Hypertension tendency, arteriosclerosis",
+      "treatment_focus": "Mineral balance, sodium reduction"
+    },
+    "psora": {
+      "description": "Brown patches in various iris locations",
+      "interpretation": "Inherited weakness from suppressed skin conditions in ancestry",
+      "associated_with": "Genetic predisposition to skin/elimination issues"
+    },
+    "drug_deposits": {
+      "description": "Various colored deposits from medication use",
+      "colors": {
+        "yellow": "Sulfur drugs",
+        "brown": "Iron supplements, certain medications",
+        "gray": "Silver compounds",
+        "blue-gray": "Tetracycline antibiotics"
+      }
+    },
+    "healing_lines": {
+      "description": "White, feathery lines appearing within lacunae",
+      "interpretation": "Active tissue repair and regeneration",
+      "significance": "Positive sign - body healing the weakness"
+    }
+  },
+  "acute_chronic_scale": {
+    "description": "Jensen's 7-stage tissue condition scale",
+    "stages": {
+      "1": {
+        "color": "Pure white",
+        "condition": "Acute",
+        "tissue_state": "Active inflammation",
+        "meaning": "Body actively fighting, good vitality, recent onset"
+      },
+      "2": {
+        "color": "Light gray",
+        "condition": "Subacute",
+        "tissue_state": "Declining vitality",
+        "meaning": "Response declining, needs support"
+      },
+      "3": {
+        "color": "Gray",
+        "condition": "Early chronic",
+        "tissue_state": "Suppression beginning",
+        "meaning": "Condition becoming established"
+      },
+      "4": {
+        "color": "Dark gray",
+        "condition": "Chronic",
+        "tissue_state": "Established suppression",
+        "meaning": "Long-standing condition, sluggish tissue"
+      },
+      "5": {
+        "color": "Very dark gray",
+        "condition": "Degenerative",
+        "tissue_state": "Tissue breakdown",
+        "meaning": "Cellular degeneration occurring"
+      },
+      "6": {
+        "color": "Black",
+        "condition": "Severely compromised",
+        "tissue_state": "Severe degeneration",
+        "meaning": "Advanced tissue deterioration"
+      },
+      "7": {
+        "color": "Black hole",
+        "condition": "Inherent weakness",
+        "tissue_state": "Genetic predisposition",
+        "meaning": "Inherited constitutional weakness (crypt)"
+      }
+    }
+  }
+}
