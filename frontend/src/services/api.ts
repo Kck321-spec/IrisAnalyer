@@ -204,6 +204,20 @@ export async function getPreprocessedImage(
   return response.data
 }
 
+export async function getCroppedIris(irisImage: File): Promise<Blob> {
+  const formData = new FormData()
+  formData.append('iris_image', irisImage)
+
+  const response = await axios.post(`${API_BASE}/analysis/crop-iris`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+    responseType: 'blob',
+  })
+
+  return response.data
+}
+
 // Patient management
 export interface Patient {
   id: number

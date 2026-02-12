@@ -49,8 +49,8 @@ function IrisViewer({ leftImage, rightImage }: IrisViewerProps) {
 
   return (
     <div>
-      {/* Side by side view - anatomically correct (patient's right on viewer's left) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Side by side view - always 2 columns, even on mobile */}
+      <div className="grid grid-cols-2 gap-2 md:gap-4">
         {renderImage(rightImage, 'right')}
         {renderImage(leftImage, 'left')}
       </div>

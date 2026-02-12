@@ -169,6 +169,21 @@ async def get_annotated_image(
     return Response(content=annotated, media_type="image/png")
 
 
+@router.post("/crop-iris")
+async def get_cropped_iris(
+    iris_image: UploadFile = File(...)
+):
+    """
+    Detect and crop just the circular iris from the image.
+    Returns a PNG with transparent background showing only the iris.
+    """
+    image_data = await iris_image.read()
+    cropped = image_processor.crop_iris_circle(image_data)
+
+    from fastapi.responses import Response
+    return Response(content=cropped, media_type="image/png")
+
+
 @router.post("/preprocess-image")
 async def get_preprocessed_image(
     eye_side: str = Form(...),

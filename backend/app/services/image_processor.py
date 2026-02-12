@@ -651,6 +651,63 @@ class IrisImageProcessor:
 
         return "; ".join(notes) if notes else "Within normal range"
 
+    def crop_iris_circle(self, image_data: bytes) -> bytes:
+        """
+        Detect and crop just the circular iris from the image.
+        Returns a square image with the iris centered and background made transparent.
+        """
+        nparr = np.frombuffer(image_data, np.uint8)
+        image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+        if image is None:
+            return image_data
+
+        # Preprocess for better detection
+        processed = self.preprocess_iris_image(image, remove_glare_flag=True, enhance_flag=True)
+        gray = cv2.cvtColor(processed, cv2.COLOR_BGR2GRAY)
+
+        # Detect iris
+        iris_info = self._detect_iris(gray, processed)
+
+        if iris_info is None:
+            # Fallback: use center of image
+            h, w = image.shape[:2]
+            iris_info = {
+                "center": (w // 2, h // 2),
+                "iris_radius": min(w, h) // 3,
+                "pupil_radius": min(w, h) // 10
+            }
+
+        center = iris_info["center"]
+        radius = iris_info["iris_radius"]
+
+        # Add a small margin around the iris
+        margin = int(radius * 0.1)
+        crop_radius = radius + margin
+
+        # Calculate crop bounds
+        x1 = max(0, center[0] - crop_radius)
+        y1 = max(0, center[1] - crop_radius)
+        x2 = min(image.shape[1], center[0] + crop_radius)
+        y2 = min(image.shape[0], center[1] + crop_radius)
+
+        # Crop the region
+        cropped = processed[y1:y2, x1:x2]
+
+        # Create circular mask
+        h, w = cropped.shape[:2]
+        new_center = (w // 2, h // 2)
+        mask = np.zeros((h, w), dtype=np.uint8)
+        cv2.circle(mask, new_center, min(new_center), 255, -1)
+
+        # Create RGBA image with transparent background
+        rgba = cv2.cvtColor(cropped, cv2.COLOR_BGR2BGRA)
+        rgba[:, :, 3] = mask  # Set alpha channel
+
+        # Encode as PNG to preserve transparency
+        _, buffer = cv2.imencode('.png', rgba)
+        return buffer.tobytes()
+
     def create_annotated_image(self, image_data: bytes, features: Dict) -> bytes:
         """Create an annotated version of the iris image."""
         nparr = np.frombuffer(image_data, np.uint8)

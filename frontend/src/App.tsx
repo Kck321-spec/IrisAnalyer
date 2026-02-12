@@ -3,7 +3,7 @@ import PatientForm from './components/PatientForm'
 import ImageUploader from './components/ImageUploader'
 import IrisViewer from './components/IrisViewer'
 import AnalysisPanel from './components/AnalysisPanel'
-import { analyzeIris } from './services/api'
+import { analyzeIris, getCroppedIris } from './services/api'
 
 interface AnalysisResult {
   patient_name: string
@@ -35,20 +35,42 @@ function App() {
   const [rightIris, setRightIris] = useState<File | null>(null)
   const [leftPreview, setLeftPreview] = useState<string | null>(null)
   const [rightPreview, setRightPreview] = useState<string | null>(null)
+  const [leftCropped, setLeftCropped] = useState<string | null>(null)
+  const [rightCropped, setRightCropped] = useState<string | null>(null)
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const handleLeftIrisUpload = (file: File) => {
+  const handleLeftIrisUpload = async (file: File) => {
     setLeftIris(file)
     const previewUrl = URL.createObjectURL(file)
     setLeftPreview(previewUrl)
+
+    // Get cropped circular iris
+    try {
+      const croppedBlob = await getCroppedIris(file)
+      const croppedUrl = URL.createObjectURL(croppedBlob)
+      setLeftCropped(croppedUrl)
+    } catch (err) {
+      console.error('Failed to crop iris:', err)
+      setLeftCropped(previewUrl) // Fallback to original
+    }
   }
 
-  const handleRightIrisUpload = (file: File) => {
+  const handleRightIrisUpload = async (file: File) => {
     setRightIris(file)
     const previewUrl = URL.createObjectURL(file)
     setRightPreview(previewUrl)
+
+    // Get cropped circular iris
+    try {
+      const croppedBlob = await getCroppedIris(file)
+      const croppedUrl = URL.createObjectURL(croppedBlob)
+      setRightCropped(croppedUrl)
+    } catch (err) {
+      console.error('Failed to crop iris:', err)
+      setRightCropped(previewUrl) // Fallback to original
+    }
   }
 
   const handleAnalyze = async () => {
@@ -81,6 +103,8 @@ function App() {
     setRightIris(null)
     setLeftPreview(null)
     setRightPreview(null)
+    setLeftCropped(null)
+    setRightCropped(null)
     setAnalysisResult(null)
     setError(null)
   }
@@ -111,11 +135,11 @@ function App() {
           </div>
         </div>
 
-        {/* Iris Upload Section */}
-        <div className="flex justify-center gap-8 mb-8">
+        {/* Iris Upload Section - side by side on all screens */}
+        <div className="grid grid-cols-2 gap-2 md:gap-8 mb-8 max-w-3xl mx-auto">
           {/* Right Iris Upload - shown on left (anatomically correct view) */}
-          <div className="bg-gray-800 rounded-lg p-6 w-72">
-            <h2 className="text-xl font-semibold mb-4 text-center">Right Iris (OD)</h2>
+          <div className="bg-gray-800 rounded-lg p-3 md:p-6">
+            <h2 className="text-sm md:text-xl font-semibold mb-2 md:mb-4 text-center">Right Iris (OD)</h2>
             <ImageUploader
               onUpload={handleRightIrisUpload}
               preview={rightPreview}
@@ -124,8 +148,8 @@ function App() {
           </div>
 
           {/* Left Iris Upload - shown on right (anatomically correct view) */}
-          <div className="bg-gray-800 rounded-lg p-6 w-72">
-            <h2 className="text-xl font-semibold mb-4 text-center">Left Iris (OS)</h2>
+          <div className="bg-gray-800 rounded-lg p-3 md:p-6">
+            <h2 className="text-sm md:text-xl font-semibold mb-2 md:mb-4 text-center">Left Iris (OS)</h2>
             <ImageUploader
               onUpload={handleLeftIrisUpload}
               preview={leftPreview}
@@ -168,11 +192,11 @@ function App() {
           </button>
         </div>
 
-        {/* Iris Viewer */}
-        {(leftPreview || rightPreview) && (
+        {/* Iris Viewer - shows cropped circular irises */}
+        {(leftCropped || rightCropped) && (
           <div className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">Iris Images</h2>
-            <IrisViewer leftImage={leftPreview} rightImage={rightPreview} />
+            <IrisViewer leftImage={leftCropped} rightImage={rightCropped} />
           </div>
         )}
 
