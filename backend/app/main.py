@@ -34,12 +34,14 @@ allowed_origins = [
     "http://localhost:5173",
     "http://localhost:3000",
     "http://127.0.0.1:5173",
+    "https://iris-analyzer.vercel.app",
+    "https://iris-analyzer-kck321-specs-projects.vercel.app",
 ]
 # Add production frontend URL from environment
 if os.getenv("FRONTEND_URL"):
     allowed_origins.append(os.getenv("FRONTEND_URL"))
 # Allow all origins in production if explicitly set (for flexibility)
-if os.getenv("ALLOW_ALL_ORIGINS") == "true":
+if os.getenv("ALLOW_ALL_ORIGINS", "").lower() == "true":
     allowed_origins = ["*"]
 
 app.add_middleware(
