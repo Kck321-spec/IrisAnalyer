@@ -651,10 +651,15 @@ class IrisImageProcessor:
 
         return "; ".join(notes) if notes else "Within normal range"
 
-    def crop_iris_circle(self, image_data: bytes) -> bytes:
+    def crop_iris_circle(self, image_data: bytes, output_size: int = 400) -> bytes:
         """
         Detect and crop just the circular iris from the image.
-        Returns a square image with the iris centered and background made transparent.
+        Returns a fixed-size square image with the iris centered and background made transparent.
+        All output images are the same size regardless of input, so left and right eyes match.
+
+        Args:
+            image_data: Raw image bytes
+            output_size: Fixed output size in pixels (default 400x400)
         """
         nparr = np.frombuffer(image_data, np.uint8)
         image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
@@ -682,7 +687,7 @@ class IrisImageProcessor:
         radius = iris_info["iris_radius"]
 
         # Add a small margin around the iris
-        margin = int(radius * 0.1)
+        margin = int(radius * 0.15)
         crop_radius = radius + margin
 
         # Calculate crop bounds
@@ -694,11 +699,14 @@ class IrisImageProcessor:
         # Crop the region
         cropped = processed[y1:y2, x1:x2]
 
-        # Create circular mask
-        h, w = cropped.shape[:2]
-        new_center = (w // 2, h // 2)
-        mask = np.zeros((h, w), dtype=np.uint8)
-        cv2.circle(mask, new_center, min(new_center), 255, -1)
+        # Resize to fixed output size so all images are the same dimensions
+        cropped = cv2.resize(cropped, (output_size, output_size), interpolation=cv2.INTER_LANCZOS4)
+
+        # Create circular mask at the fixed size
+        mask = np.zeros((output_size, output_size), dtype=np.uint8)
+        circle_center = (output_size // 2, output_size // 2)
+        circle_radius = int(output_size * 0.45)  # Slightly smaller than half to ensure full circle fits
+        cv2.circle(mask, circle_center, circle_radius, 255, -1)
 
         # Create RGBA image with transparent background
         rgba = cv2.cvtColor(cropped, cv2.COLOR_BGR2BGRA)
