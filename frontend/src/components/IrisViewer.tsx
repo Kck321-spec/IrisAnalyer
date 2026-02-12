@@ -19,28 +19,30 @@ function IrisViewer({ leftImage, rightImage }: IrisViewerProps) {
   const renderImage = (image: string | null, side: 'left' | 'right') => {
     if (!image) {
       return (
-        <div className="aspect-square bg-gray-700 rounded-lg flex items-center justify-center">
-          <p className="text-gray-500">No {side} iris image</p>
+        <div className="aspect-square bg-gray-700 rounded-full flex items-center justify-center">
+          <p className="text-gray-500 text-center text-xs md:text-sm px-2">No {side} iris</p>
         </div>
       )
     }
 
     return (
-      <div
-        className="aspect-square bg-gray-700 rounded-lg overflow-hidden cursor-zoom-in relative group"
-        onClick={() => setSelectedImage(side)}
-      >
-        <img
-          src={image}
-          alt={`${side} iris`}
-          className="w-full h-full object-contain"
-        />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-          <span className="opacity-0 group-hover:opacity-100 text-white text-sm">
-            Click to enlarge
-          </span>
+      <div className="flex flex-col items-center">
+        <div
+          className="aspect-square bg-gray-800 rounded-full overflow-hidden cursor-zoom-in relative group border-2 border-gray-600"
+          onClick={() => setSelectedImage(side)}
+        >
+          <img
+            src={image}
+            alt={`${side} iris`}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors rounded-full flex items-center justify-center">
+            <span className="opacity-0 group-hover:opacity-100 text-white text-sm font-medium">
+              Enlarge
+            </span>
+          </div>
         </div>
-        <div className="absolute bottom-2 left-2 bg-black/60 px-2 py-1 rounded text-sm">
+        <div className="mt-2 text-center text-sm text-gray-400">
           {side === 'left' ? 'OS (Left)' : 'OD (Right)'}
         </div>
       </div>
