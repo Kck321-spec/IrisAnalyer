@@ -1,12 +1,29 @@
 import { useState } from 'react'
 import DoctorInsightCard from './DoctorInsightCard'
 
+// Helper to ensure value is always an array
+const ensureArray = (value: unknown): unknown[] => {
+  if (Array.isArray(value)) return value
+  if (value === null || value === undefined) return []
+  if (typeof value === 'string') return value ? [value] : []
+  if (typeof value === 'object') return Object.values(value)
+  return [value]
+}
+
+// Helper to ensure value is always an object
+const ensureObject = (value: unknown): Record<string, unknown> => {
+  if (value && typeof value === 'object' && !Array.isArray(value)) {
+    return value as Record<string, unknown>
+  }
+  return {}
+}
+
 interface DoctorAnalysis {
   doctor_name: string
   methodology: string
-  findings: string[]
-  organ_correlations: Record<string, string>
-  recommendations: string[]
+  findings: string[] | unknown
+  organ_correlations: Record<string, string> | unknown
+  recommendations: string[] | unknown
   confidence_notes: string
 }
 
@@ -119,7 +136,8 @@ function AnalysisPanel({ analyses }: AnalysisPanelProps) {
             {(() => {
               const allOrgans = new Map<string, string[]>()
               doctors.forEach((doctor) => {
-                Object.entries(analyses[doctor.key].organ_correlations).forEach(
+                const correlations = ensureObject(analyses[doctor.key].organ_correlations)
+                Object.entries(correlations).forEach(
                   ([organ, condition]) => {
                     const key = organ.toLowerCase().trim()
                     if (!allOrgans.has(key)) {
@@ -164,7 +182,7 @@ function AnalysisPanel({ analyses }: AnalysisPanelProps) {
           <div className="bg-gray-700/50 rounded-lg p-4">
             <div className="space-y-4">
               {doctors.map((doctor) => {
-                const findings = analyses[doctor.key].findings
+                const findings = ensureArray(analyses[doctor.key].findings)
                 if (findings.length === 0) return null
 
                 return (
@@ -212,7 +230,8 @@ function AnalysisPanel({ analyses }: AnalysisPanelProps) {
               // Collect all recommendations
               const allRecs: { doctor: string; rec: string }[] = []
               doctors.forEach((doctor) => {
-                analyses[doctor.key].recommendations.forEach((rec) => {
+                const recs = ensureArray(analyses[doctor.key].recommendations)
+                recs.forEach((rec) => {
                   const recStr = typeof rec === 'string' ? rec : JSON.stringify(rec)
                   allRecs.push({ doctor: doctor.name, rec: recStr })
                 })
@@ -313,7 +332,7 @@ function AnalysisPanel({ analyses }: AnalysisPanelProps) {
               <div className="text-2xl mb-1">{doctor.icon}</div>
               <div className="text-sm font-medium">{doctor.name}</div>
               <div className="text-xs text-gray-500">
-                {analyses[doctor.key].findings.length} findings • {Object.keys(analyses[doctor.key].organ_correlations).length} organs • {analyses[doctor.key].recommendations.length} recs
+                {ensureArray(analyses[doctor.key].findings).length} findings • {Object.keys(ensureObject(analyses[doctor.key].organ_correlations)).length} organs • {ensureArray(analyses[doctor.key].recommendations).length} recs
               </div>
             </div>
           ))}

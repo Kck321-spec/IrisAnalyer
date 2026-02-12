@@ -1,10 +1,27 @@
 interface DoctorAnalysis {
   doctor_name: string
   methodology: string
-  findings: (string | object)[]
-  organ_correlations: Record<string, string | object>
-  recommendations: (string | object)[]
+  findings: (string | object)[] | unknown
+  organ_correlations: Record<string, string | object> | unknown
+  recommendations: (string | object)[] | unknown
   confidence_notes: string
+}
+
+// Helper to ensure value is always an array
+const ensureArray = (value: unknown): unknown[] => {
+  if (Array.isArray(value)) return value
+  if (value === null || value === undefined) return []
+  if (typeof value === 'string') return value ? [value] : []
+  if (typeof value === 'object') return Object.values(value)
+  return [value]
+}
+
+// Helper to ensure value is always an object
+const ensureObject = (value: unknown): Record<string, unknown> => {
+  if (value && typeof value === 'object' && !Array.isArray(value)) {
+    return value as Record<string, unknown>
+  }
+  return {}
 }
 
 // Helper to safely convert any value to a displayable string
@@ -67,9 +84,9 @@ function DoctorInsightCard({ analysis, doctorInfo }: DoctorInsightCardProps) {
         <h4 className="text-lg font-semibold mb-3 flex items-center gap-2">
           <span>🔍</span> Key Findings
         </h4>
-        {analysis.findings.length > 0 ? (
+        {ensureArray(analysis.findings).length > 0 ? (
           <ul className="space-y-2">
-            {analysis.findings.map((finding, index) => (
+            {ensureArray(analysis.findings).map((finding, index) => (
               <li
                 key={index}
                 className="bg-gray-700 rounded-lg p-3 flex items-start gap-3"
@@ -89,9 +106,9 @@ function DoctorInsightCard({ analysis, doctorInfo }: DoctorInsightCardProps) {
         <h4 className="text-lg font-semibold mb-3 flex items-center gap-2">
           <span>🫀</span> Organ Correlations
         </h4>
-        {Object.keys(analysis.organ_correlations).length > 0 ? (
+        {Object.keys(ensureObject(analysis.organ_correlations)).length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {Object.entries(analysis.organ_correlations).map(([organ, condition]) => (
+            {Object.entries(ensureObject(analysis.organ_correlations)).map(([organ, condition]) => (
               <div
                 key={organ}
                 className="bg-gray-700 rounded-lg p-3 flex items-center gap-3"
@@ -114,9 +131,9 @@ function DoctorInsightCard({ analysis, doctorInfo }: DoctorInsightCardProps) {
         <h4 className="text-lg font-semibold mb-3 flex items-center gap-2">
           <span>💡</span> Recommendations
         </h4>
-        {analysis.recommendations.length > 0 ? (
+        {ensureArray(analysis.recommendations).length > 0 ? (
           <ul className="space-y-2">
-            {analysis.recommendations.map((rec, index) => (
+            {ensureArray(analysis.recommendations).map((rec, index) => (
               <li
                 key={index}
                 className="bg-green-900/30 border border-green-700 rounded-lg p-3 flex items-start gap-3"
