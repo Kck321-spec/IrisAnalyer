@@ -653,9 +653,10 @@ class IrisImageProcessor:
 
     def crop_iris_circle(self, image_data: bytes, output_size: int = 400) -> bytes:
         """
-        Detect and crop just the circular iris from the image.
-        Returns a fixed-size square image with the iris centered and background made transparent.
+        Detect and crop JUST the iris (colored part) from the image.
+        Returns a fixed-size square image with the iris perfectly centered.
         All output images are the same size regardless of input, so left and right eyes match.
+        The iris will fill the circular output for accurate chart overlay.
 
         Args:
             image_data: Raw image bytes
@@ -686,26 +687,49 @@ class IrisImageProcessor:
         center = iris_info["center"]
         radius = iris_info["iris_radius"]
 
-        # Add a small margin around the iris
-        margin = int(radius * 0.15)
-        crop_radius = radius + margin
+        # Crop exactly to the iris radius - no extra margin
+        # This ensures just the iris is captured, not eyelids
+        crop_radius = radius
 
-        # Calculate crop bounds
-        x1 = max(0, center[0] - crop_radius)
-        y1 = max(0, center[1] - crop_radius)
-        x2 = min(image.shape[1], center[0] + crop_radius)
-        y2 = min(image.shape[0], center[1] + crop_radius)
+        # Calculate crop bounds - ensure we get a square centered on iris
+        x1 = int(center[0] - crop_radius)
+        y1 = int(center[1] - crop_radius)
+        x2 = int(center[0] + crop_radius)
+        y2 = int(center[1] + crop_radius)
+
+        # Handle edge cases where iris is near image boundary
+        # Pad with black if needed to keep iris centered
+        pad_left = max(0, -x1)
+        pad_top = max(0, -y1)
+        pad_right = max(0, x2 - image.shape[1])
+        pad_bottom = max(0, y2 - image.shape[0])
+
+        # Adjust bounds to valid image region
+        x1 = max(0, x1)
+        y1 = max(0, y1)
+        x2 = min(image.shape[1], x2)
+        y2 = min(image.shape[0], y2)
 
         # Crop the region
         cropped = processed[y1:y2, x1:x2]
 
-        # Resize to fixed output size so all images are the same dimensions
+        # Add padding if iris was near edge (to keep it centered)
+        if pad_left > 0 or pad_top > 0 or pad_right > 0 or pad_bottom > 0:
+            cropped = cv2.copyMakeBorder(
+                cropped,
+                pad_top, pad_bottom, pad_left, pad_right,
+                cv2.BORDER_CONSTANT,
+                value=[0, 0, 0]
+            )
+
+        # Resize to fixed output size - iris will fill the frame
         cropped = cv2.resize(cropped, (output_size, output_size), interpolation=cv2.INTER_LANCZOS4)
 
-        # Create circular mask at the fixed size
+        # Create circular mask that matches the iris edge
+        # The iris should fill almost the entire circle
         mask = np.zeros((output_size, output_size), dtype=np.uint8)
         circle_center = (output_size // 2, output_size // 2)
-        circle_radius = int(output_size * 0.45)  # Slightly smaller than half to ensure full circle fits
+        circle_radius = int(output_size * 0.48)  # Nearly full size - iris fills the circle
         cv2.circle(mask, circle_center, circle_radius, 255, -1)
 
         # Create RGBA image with transparent background
