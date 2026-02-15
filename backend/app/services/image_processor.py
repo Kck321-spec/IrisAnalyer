@@ -175,51 +175,181 @@ class IrisImageProcessor:
         return features
 
     def _detect_iris(self, gray: np.ndarray, color_image: np.ndarray) -> Optional[Dict]:
-        """Detect iris and pupil circles using Hough Circle Transform."""
-        # Apply Gaussian blur to reduce noise
+        """
+        Detect iris and pupil using multiple methods for accuracy.
+        Priority: Find the pupil first (most distinct feature), then use its center for the iris.
+        """
+        h, w = gray.shape
+
+        # Method 1: Find the darkest region (pupil) using threshold and contour
+        pupil_center, pupil_radius = self._find_pupil_by_darkness(gray)
+
+        # Method 2: Try Hough Circles as backup
+        if pupil_center is None:
+            pupil_center, pupil_radius = self._find_pupil_by_hough(gray)
+
+        # Method 3: Fall back to center of image if nothing found
+        if pupil_center is None:
+            pupil_center = (w // 2, h // 2)
+            pupil_radius = min(w, h) // 10
+
+        # Estimate iris radius based on pupil (iris is typically 2.5-3.5x pupil size)
+        # Also try to detect the actual iris edge
+        iris_radius = self._estimate_iris_radius(gray, pupil_center, pupil_radius)
+
+        return {
+            "center": pupil_center,
+            "iris_radius": iris_radius,
+            "pupil_radius": pupil_radius
+        }
+
+    def _find_pupil_by_darkness(self, gray: np.ndarray) -> Tuple[Optional[Tuple[int, int]], Optional[int]]:
+        """
+        Find the pupil by locating the darkest circular region.
+        The pupil is the most reliable landmark in an iris image.
+        """
+        h, w = gray.shape
+
+        # Apply blur to reduce noise
+        blurred = cv2.GaussianBlur(gray, (15, 15), 3)
+
+        # Find the darkest regions - pupil should be very dark
+        # Use adaptive threshold based on image mean
+        mean_val = np.mean(blurred)
+        threshold_val = min(50, mean_val * 0.4)
+
+        _, binary = cv2.threshold(blurred, threshold_val, 255, cv2.THRESH_BINARY_INV)
+
+        # Clean up the mask
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+        binary = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
+        binary = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel)
+
+        # Find contours of dark regions
+        contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        if not contours:
+            return None, None
+
+        # Find the most circular contour that's appropriately sized for a pupil
+        best_contour = None
+        best_circularity = 0
+
+        for contour in contours:
+            area = cv2.contourArea(contour)
+            perimeter = cv2.arcLength(contour, True)
+
+            if perimeter == 0:
+                continue
+
+            # Calculate circularity (1.0 = perfect circle)
+            circularity = 4 * np.pi * area / (perimeter * perimeter)
+
+            # Pupil should be reasonably circular and have reasonable size
+            min_area = (min(h, w) // 20) ** 2 * np.pi * 0.5
+            max_area = (min(h, w) // 4) ** 2 * np.pi
+
+            if circularity > 0.5 and min_area < area < max_area:
+                if circularity > best_circularity:
+                    best_circularity = circularity
+                    best_contour = contour
+
+        if best_contour is None:
+            return None, None
+
+        # Get the minimum enclosing circle for the pupil
+        (cx, cy), radius = cv2.minEnclosingCircle(best_contour)
+
+        return (int(cx), int(cy)), int(radius)
+
+    def _find_pupil_by_hough(self, gray: np.ndarray) -> Tuple[Optional[Tuple[int, int]], Optional[int]]:
+        """Fallback: Find pupil using Hough Circle Transform."""
+        h, w = gray.shape
         blurred = cv2.GaussianBlur(gray, (9, 9), 2)
 
-        # Detect circles for pupil (smaller, darker circle)
-        pupil_circles = cv2.HoughCircles(
+        # Try to detect pupil circle
+        circles = cv2.HoughCircles(
             blurred,
             cv2.HOUGH_GRADIENT,
-            dp=1,
-            minDist=gray.shape[0] // 4,
+            dp=1.2,
+            minDist=h // 4,
             param1=50,
-            param2=30,
-            minRadius=gray.shape[0] // 20,
-            maxRadius=gray.shape[0] // 6
+            param2=25,
+            minRadius=h // 20,
+            maxRadius=h // 5
         )
 
-        # Detect circles for iris (larger circle)
-        iris_circles = cv2.HoughCircles(
-            blurred,
-            cv2.HOUGH_GRADIENT,
-            dp=1,
-            minDist=gray.shape[0] // 2,
-            param1=50,
-            param2=30,
-            minRadius=gray.shape[0] // 4,
-            maxRadius=gray.shape[0] // 2
-        )
+        if circles is not None:
+            # Take the first (most confident) circle
+            circle = circles[0][0]
+            return (int(circle[0]), int(circle[1])), int(circle[2])
 
-        if iris_circles is not None:
-            iris = iris_circles[0][0]
-            center = (int(iris[0]), int(iris[1]))
-            iris_radius = int(iris[2])
+        return None, None
 
-            pupil_radius = iris_radius // 3  # Default estimate
-            if pupil_circles is not None:
-                pupil = pupil_circles[0][0]
-                pupil_radius = int(pupil[2])
+    def _estimate_iris_radius(self, gray: np.ndarray, center: Tuple[int, int], pupil_radius: int) -> int:
+        """
+        Estimate the iris radius by looking for the edge transition.
+        The iris typically has a clear boundary with the sclera (white of eye).
+        """
+        h, w = gray.shape
 
-            return {
-                "center": center,
-                "iris_radius": iris_radius,
-                "pupil_radius": pupil_radius
-            }
+        # Sample radially outward from the center to find the iris edge
+        max_radius = min(center[0], center[1], w - center[0], h - center[1])
 
-        return None
+        # Look for significant brightness change (iris to sclera transition)
+        num_rays = 36
+        edge_radii = []
+
+        for angle_deg in range(0, 360, 360 // num_rays):
+            angle_rad = np.radians(angle_deg)
+
+            # Sample from just outside pupil to max radius
+            start_r = pupil_radius + 5
+            intensities = []
+
+            for r in range(start_r, min(int(max_radius * 0.9), start_r + 200)):
+                x = int(center[0] + r * np.cos(angle_rad))
+                y = int(center[1] + r * np.sin(angle_rad))
+
+                if 0 <= x < w and 0 <= y < h:
+                    intensities.append((r, gray[y, x]))
+
+            if len(intensities) < 20:
+                continue
+
+            # Find where brightness increases significantly (iris to sclera)
+            intensities_arr = np.array([i[1] for i in intensities])
+            radii_arr = np.array([i[0] for i in intensities])
+
+            # Smooth the intensity profile
+            if len(intensities_arr) > 5:
+                smoothed = np.convolve(intensities_arr, np.ones(5)/5, mode='valid')
+                radii_smooth = radii_arr[2:-2]
+
+                # Find gradient
+                gradient = np.gradient(smoothed)
+
+                # Find where there's a significant positive gradient (getting brighter = leaving iris)
+                threshold = np.std(gradient) * 1.5
+
+                for i, grad in enumerate(gradient):
+                    if grad > threshold and smoothed[i] > 100:  # Getting brighter, already somewhat bright
+                        edge_radii.append(radii_smooth[i])
+                        break
+
+        # Use median of detected edges for robustness
+        if edge_radii:
+            iris_radius = int(np.median(edge_radii))
+        else:
+            # Fallback: estimate based on pupil size (iris typically 2.5-3x pupil)
+            iris_radius = int(pupil_radius * 2.8)
+
+        # Clamp to reasonable bounds
+        min_iris = pupil_radius * 2
+        max_iris = min(w, h) // 2 - 10
+        iris_radius = max(min_iris, min(iris_radius, max_iris))
+
+        return iris_radius
 
     def _analyze_dominant_color(self, bgr: np.ndarray, hsv: np.ndarray, iris_info: Dict) -> str:
         """Determine the dominant iris color (blue, brown, mixed, hazel)."""
